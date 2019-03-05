@@ -2,7 +2,7 @@
   "name": "campus-trading-platform",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "wangtao <1194992140@qq.com>",
+  "author": "lihao <377392099@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -10,8 +10,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "echarts": "^4.1.0",
+    "element-ui": "^2.6.1",
+    "node-sass": "^4.11.0",
+    "pug": "^2.0.3",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
