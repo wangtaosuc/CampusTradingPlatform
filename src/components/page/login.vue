@@ -4,15 +4,16 @@
       .login-logo
       .login-form
         el-form(:model="ruleForm2", status-icon, :rules="rules2", ref="ruleForm2", label-width="100px", class="demo-ruleForm")
-          el-form-item(label="用户名:" prop="age", placeholder='请输入用户名')
-            el-input(v-model.number="ruleForm2.age")
+          el-form-item(label="用户名:" prop="userName", placeholder='请输入用户名')
+            el-input(v-model.number="ruleForm2.userName")
           el-form-item(label="密码:" prop="pass", placeholder='请输入密码')
             el-input(type="password" v-model="ruleForm2.pass" autocomplete="off")
           el-form-item(label="确认密码:" prop="checkPass", placeholder='请再次输入密码')
             el-input(type="password" v-model="ruleForm2.checkPass" autocomplete="off")
-          el-form-item
-            input.input-code(type='text')
-            .code 验证码
+          el-form-item(label="验证码:").disFlex
+            input.input-code(type='text', v-model='inputCode')
+            .code(@click='createCode')
+              canvas#canvas(ref='canvas', width='100px', height='40px')
           el-form-item
             el-button(type="primary" @click="submitForm('ruleForm2')") 提交
             el-button(@click="resetForm('ruleForm2')") 重置
@@ -52,7 +53,7 @@ export default {
       ruleForm2: {
         pass: '',
         checkPass: '',
-        age: ''
+        userName: ''
       },
       rules2: {
         pass: [
@@ -61,26 +62,62 @@ export default {
         checkPass: [
           { validator: validatePass2, trigger: 'blur' }
         ],
-        age: [
+        userName: [
           { validator: checkAge, trigger: 'blur' }
         ]
-      }
+      },
+      inputCode: '',
+      canvStr: '',
     }
   },
   methods: {
     submitForm(formName) {
+      console.log(111)
+     if (this.canvStr === this.inputCode.toUpperCase()) {
+       console.log(222)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
+          this.inputCode = ''
+          console.log('submit!');
         } else {
           console.log('error submit!!');
           return false;
         }
       });
+     } else {
+      alert("验证码错误")
+      this.createCode();
+      this.inputCode = ''
+     }
+      
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+      this.inputCode = ''
+    },
+    createCode() {
+      let codeArr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1',
+      '2','3','4','5','6','7','8','9','0']
+      var canvas = this.$refs.canvas
+      this.canvStr = ''
+      for (let i = 0; i < 4; i ++) {
+        let index = this.randomIndex()
+        this.canvStr += codeArr[index]
+      }
+      if (canvas) {
+        var ctx = canvas.getContext('2d')
+        ctx.clearRect(0, 0, 100, 40)
+        ctx.fillStyle = 'blue'
+        ctx.font = '30px orial'
+        ctx.fillText (this.canvStr, 9, 30)
+      }
+    },
+    randomIndex() {
+      return Math.floor(Math.random() * 36)
     }
+  },
+  mounted() {
+    this.createCode()
   }
 }
 </script>
@@ -119,6 +156,9 @@ export default {
         position: relative;
         .demo-ruleForm {
           margin: 40px auto;
+          .el-form-item__content {
+            display: flex !important;
+          }
           .input-code {
             display: inline-block;
             border: 1px solid black;
@@ -130,7 +170,7 @@ export default {
             font-size: 20px;
             line-height: 40px;
             box-sizing: border-box;
-            margin-left: 80px;
+            margin-left: 27px;
           }
           .code {
             display: inline-block;
@@ -138,6 +178,7 @@ export default {
             height: 40px;
             margin-left: 100px;
             border: 1px solid black;
+            border-radius: 5px;
           }
         }
       }
