@@ -18,6 +18,9 @@ export default {
     }
   },
   methods: {
+    login() {
+      location.href = '/login'
+    }
   }
 }
 </script>
