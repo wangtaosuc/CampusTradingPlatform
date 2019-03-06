@@ -8,14 +8,14 @@
             el-input(v-model.number="ruleForm2.userName")
           el-form-item(label="密码:" prop="pass", placeholder='请输入密码')
             el-input(type="password" v-model="ruleForm2.pass" autocomplete="off")
-          el-form-item(label="确认密码:" prop="checkPass", placeholder='请再次输入密码')
-            el-input(type="password" v-model="ruleForm2.checkPass" autocomplete="off")
+          //- el-form-item(label="确认密码:" prop="checkPass", placeholder='请再次输入密码')
+          //-   el-input(type="password" v-model="ruleForm2.checkPass" autocomplete="off")
           el-form-item(label="验证码:").disFlex
             input.input-code(type='text', v-model='inputCode')
             .code(@click='createCode')
               canvas#canvas(ref='canvas', width='100px', height='40px')
           el-form-item
-            el-button(type="primary" @click="submitForm('ruleForm2')") 提交
+            el-button(type="primary" @click="submitForm('ruleForm2')") 登录
             el-button(@click="resetForm('ruleForm2')") 重置
     .login-footer
     .footer
@@ -40,15 +40,15 @@ export default {
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'));
-      } else if (value !== this.ruleForm2.pass) {
-        callback(new Error('两次输入密码不一致!'));
-      } else {
-        callback();
-      }
-    };
+    // var validatePass2 = (rule, value, callback) => {
+    //   if (value === '') {
+    //     callback(new Error('请再次输入密码'));
+    //   } else if (value !== this.ruleForm2.pass) {
+    //     callback(new Error('两次输入密码不一致!'));
+    //   } else {
+    //     callback();
+    //   }
+    // };
     return {
       ruleForm2: {
         pass: '',
@@ -59,9 +59,9 @@ export default {
         pass: [
           { validator: validatePass, trigger: 'blur' }
         ],
-        checkPass: [
-          { validator: validatePass2, trigger: 'blur' }
-        ],
+        // checkPass: [
+        //   { validator: validatePass2, trigger: 'blur' }
+        // ],
         userName: [
           { validator: checkAge, trigger: 'blur' }
         ]
@@ -131,15 +131,15 @@ export default {
       position: absolute;
       left: 50%;
       top: 50%;
-      margin-left: -430px;
-      margin-top: -275px;
-      width: 860px;
-      height: 550px;
+      margin-left: -240px;
+      margin-top: -225px;
+      width: 480px;
+      height: 450px;
       // border: 1px solid black;
       border-radius: 10px;
       background: white;
       .login-logo {
-        width: 312px;
+        width: 268px;
         height: 172px;
         // border: 1px solid black;
         margin: 5px auto 0;
@@ -147,15 +147,15 @@ export default {
         background-size: 100% 100%;
       }
       .login-form {
-        width: 650px;
-        height: 360px;
+        width: 100%;
+        height: 100%;
         // border: 1px solid black;
         margin: 5px auto;
         padding: 10px 30px;
         box-sizing: border-box;
         position: relative;
         .demo-ruleForm {
-          margin: 40px auto;
+          // margin: 40px auto;
           .el-form-item__content {
             display: flex !important;
           }
@@ -176,7 +176,7 @@ export default {
             display: inline-block;
             width: 100px;
             height: 40px;
-            margin-left: 100px;
+            margin-left: 60px;
             border: 1px solid black;
             border-radius: 5px;
           }
