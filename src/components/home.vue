@@ -6,7 +6,7 @@
       .login
         el-button.loginBtn(size='medium', type='primary', @click='login') 登录
       .register
-        el-button.registerBtn(size='medium', type='primary', @click='login') 注册
+        el-button.registerBtn(size='medium', type='primary', @click='register') 注册
 </template>
 
 <script>
@@ -20,6 +20,9 @@ export default {
   methods: {
     login() {
       location.href = '/login'
+    },
+    register() {
+      location.href = '/register'
     }
   }
 }
