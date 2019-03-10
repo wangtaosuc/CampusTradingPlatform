@@ -4,9 +4,11 @@
       .login-header
       .login-content
         .input-user
-          input.user(type='text', placeholder='账号', v-model='userInfo.name')
+          input.user(type='text', placeholder='账号', v-model='userInfo.name', @blur='isBlank($event, "nameIsBlank")')
+          span(:class='{"error": nameIsBlank}') 账号不能为空
         .input-password
-          input.password(type='password', placeholder='密码', v-model='userInfo.password')
+          input.password(type='password', placeholder='密码', v-model='userInfo.password', @blur='isBlank($event, "passwordIsBlank")')
+          span(:class='{"error": passwordIsBlank}') 密码不能为空
         .input-text
           .check-remember
             input(type='checkbox', id='remember')
@@ -25,12 +27,25 @@ export default {
       userInfo: {
         name: '',
         password: ''
-      }
+      },
+      nameIsBlank: false,
+      passwordIsBlank: false
     }
   },
   methods: {
     login() {
-      console.log(this.userInfo)
+      if (this.userInfo.name === '') this.nameIsBlank = true
+      if (this.userInfo.password === '') this.passwordIsBlank = true
+      if (!this.nameIsBlank && !this.passwordIsBlank) {
+        console.log(this.userInfo)
+      }
+    },
+    isBlank($event, isBlank) {
+      if ($event.target.value === '') {
+        this[isBlank] = true
+      } else {
+        this[isBlank] = false
+      }
     }
   }
 }
@@ -59,19 +74,31 @@ export default {
         .input-user,
         .input-password {
           width: 100%;
-          height: 40px;
+          height: 52px;
           // border: 1px solid black;
-          padding: 0 auto;
-          display: flex;
-          justify-content: center;
+          padding: 0 10px;
+          // display: flex;
+          // justify-content: center;
           margin: 10px 0 37px;
           input {
             width: 380px;
-            height: 100%;
+            height: 40px;
             outline: none;
             box-sizing: border-box;
             padding: 2px 5px;
             border-radius: 5px;
+          }
+          span {
+            display: none;
+            // display: block;
+            width: 380px;
+            height: 10px;
+            font-size: 10px;
+            color: red;
+            margin-top: 2px;
+          }
+          span.error {
+            display: block;
           }
         }
         .input-password {
