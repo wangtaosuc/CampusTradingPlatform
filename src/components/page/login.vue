@@ -17,6 +17,8 @@
             a(href='#忘记密码') 忘记密码？
         .input-submit
           button(@click='login') 登录
+        .input-toRegister
+          a(href='/register') 没有账号？免费注册
         
 </template>
 
@@ -153,6 +155,23 @@ export default {
             text-align: center;
             color: #ffffff;
           }
+        }
+        .input-toRegister {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          text-align: right;
+          box-sizing: border-box;
+          padding-right: 10px;
+          a {
+            color: #eeeeee;
+            font-size: 12px;
+            &:hover {
+              text-decoration: underline;
+              color: #f40;
+            }
+          }
+          
         }
       }
     }
