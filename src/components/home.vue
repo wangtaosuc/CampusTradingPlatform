@@ -1,17 +1,41 @@
 <template lang='pug'>
   .homePage
-    .homeContent
-      .title 校园二手交易平台
-        .titleDetail 你想要的这儿都有
-      .login
-        el-button.loginBtn(size='medium', type='primary', @click='login') 登录
-      .register
-        el-button.registerBtn(size='medium', type='primary', @click='register') 注册
+    el-card(style='height:100%;', shadow='never')
+      el-row
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+        el-col(:span='4', style='padding:10px;')
+          .goods(style='background:#ccc;height:380px') 1
+      m-copyright
 </template>
 
 <script>
+import copyright from './public/copyright'
 export default {
   name: 'login',
+  components: {
+    'm-copyright': copyright
+  },
   data () {
     return {
       logo: require('../assets/images/home.jpeg')
@@ -31,35 +55,5 @@ export default {
 .homePage {
   width: 100%;
   height: 100vh;
-  background: url('../assets/images/home.jpeg') center center no-repeat;
-  background-size: 100% 100%;
-  .homeContent {
-    width: 100%;
-    height: 100vh;
-    background: #000;
-    opacity: 0.7;
-    text-align: center;
-    padding-top:10vh;
-    // line-height: 100vh;
-    .title {
-      color: #fff;
-      font-size: 60px;
-      font-weight: bolder;
-      margin-bottom: 80px;
-      .titleDetail {
-        margin-top: 30px;
-        color: #409EFF;
-        font-size: 30px;
-      }
-    }
-    .loginBtn, .registerBtn {
-      margin-top: 10vh;
-      font-size: 20px;
-      padding: 16px;
-      width: 50%;
-      max-width: 350px;
-      border-radius: 12px;
-    }
   }
-}
 </style>

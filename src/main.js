@@ -5,6 +5,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import echarts from 'echarts'
+
+import '@/assets/font/iconfont.css'
+import '@/assets/style/main.scss'
+import '@/assets/style/theme-default.scss'
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

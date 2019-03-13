@@ -19,11 +19,15 @@
           button(@click='login') 登录
         .input-toRegister
           a(href='/register') 没有账号？免费注册
-        
+    //- m-copyright     
 </template>
 
 <script>
+import copyright from '../public/copyright'
 export default {
+  components: {
+    'm-copyright': copyright
+  },
   data() {
     return {
       userInfo: {
@@ -56,7 +60,7 @@ export default {
 <style lang='scss'>
   .wrapper {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 64px);
     background: rgb(19, 29, 41);
     .content {
       width: 400px;

@@ -1,12 +1,16 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
+<template lang='pug'>
+  #app
+    m-header
+    router-view
 </template>
 
 <script>
+import header from './components/public/header'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'm-header': header
+  }
 }
 </script>
 
@@ -16,5 +20,6 @@ export default {
   width: 100vw;
   height:100vh;
   overflow:hidden;
+  background: #ccc;
 }
 </style>
