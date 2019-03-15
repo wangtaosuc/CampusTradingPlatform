@@ -3,6 +3,7 @@
     .title.iconfont.iconshangcheng1(@click='returnHome') 校园交易平台
     .login(@click='login') 登录
     .register(@click='register') 注册
+    .myOrder(@click='toMyOrder') 购物车
 </template>
 <script>
 export default {
@@ -15,6 +16,9 @@ export default {
     },
     register() {
       this.$router.push({path:'register'})
+    },
+    toMyOrder () {
+      this.$router.push({path:'myOrder'})
     },
     returnHome () {
       this.$router.push({path:'home'})
@@ -35,7 +39,7 @@ export default {
       cursor: pointer;
     //   display: inline-block;
     }
-    .login, .register {
+    .login, .register, .myOrder {
       float: right;
       color: #fff;
       margin-right: 20px;

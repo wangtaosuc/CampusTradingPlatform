@@ -5,6 +5,8 @@ import Home from '@/components/home'
 Vue.use(Router)
 import Login from '@/components/page/login.vue'
 import Register from '@/components/page/register.vue'
+import GoodsDetail from '@/components/page/goodsDetail.vue'
+import MyOrder from '@/components/page/myOrder.vue'
 var router = new Router({
   mode: 'history',
   routes: [
@@ -31,6 +33,22 @@ var router = new Router({
       component: Register,
       meta: {
         title: '注册'
+      }
+    },
+    {
+      path: '/goodsDetail',
+      name: 'GoodsDetail',
+      component: GoodsDetail,
+      meta: {
+        title: '商品详情'
+      }
+    },
+    {
+      path: '/myOrder',
+      name: 'MyOrder',
+      component: MyOrder,
+      meta: {
+        title: '我的订单'
       }
     }
   ]
