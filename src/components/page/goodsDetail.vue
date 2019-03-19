@@ -1,5 +1,5 @@
 <template lang='pug'>
-
+  .goodsDetail
 </template>
 
 <script>
