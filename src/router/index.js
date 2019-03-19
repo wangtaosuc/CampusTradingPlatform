@@ -57,32 +57,34 @@ var router = new Router({
       }
     },
     {
-      path: '/business',
+      path: '/business/',
       name: 'business',
       component: Business,
       meta: {
       title: '商家中心'
       },
-      children: [{
-        path: '/business/shop',
-        name: 'shop',
-        component: shop
-      },
-      {
-        path: '/business/goods',
-        name: 'goods',
-        component: goods
-      },
-      {
-        path: '/business/order',
-        name: 'order',
-        component: order
-      },
-      {
-        path: '/business/service',
-        name: 'service',
-        component: service
-      }]
+      children: [
+        {
+          path: 'shop',
+          name: 'shop',
+          component: shop
+        },
+        {
+          path: 'goods',
+          name: 'goods',
+          component: goods
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: order
+        },
+        {
+          path: 'service',
+          name: 'service',
+          component: service
+        }
+      ]
     }
   ]
 })
