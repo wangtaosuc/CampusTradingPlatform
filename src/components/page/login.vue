@@ -4,7 +4,7 @@
       .login-header
       .login-content
         .input-user
-          input.user(type='text', placeholder='账号', v-model='userInfo.name', @blur='isBlank($event, "nameIsBlank")')
+          input.user(type='text', placeholder='账号', v-model='userInfo.email', @blur='isBlank($event, "nameIsBlank")')
           span(:class='{"error": nameIsBlank}') 账号不能为空
         .input-password
           input.password(type='password', placeholder='密码', v-model='userInfo.password', @blur='isBlank($event, "passwordIsBlank")')
@@ -24,6 +24,7 @@
 
 <script>
 import copyright from '../public/copyright'
+import {login} from '@/http/user.js'
 export default {
   components: {
     'm-copyright': copyright
@@ -31,7 +32,7 @@ export default {
   data() {
     return {
       userInfo: {
-        name: '',
+        email: '',
         password: ''
       },
       nameIsBlank: false,
@@ -40,10 +41,14 @@ export default {
   },
   methods: {
     login() {
-      if (this.userInfo.name === '') this.nameIsBlank = true
+      if (this.userInfo.email === '') this.nameIsBlank = true
       if (this.userInfo.password === '') this.passwordIsBlank = true
       if (!this.nameIsBlank && !this.passwordIsBlank) {
-        console.log(this.userInfo)
+        login(this.userInfo).then((res) => {
+          if (res.data.status === 'ok') {
+            this.$router.push('/home')
+          }
+        })
       }
     },
     isBlank($event, isBlank) {

@@ -40,8 +40,11 @@ router.post("/login",(req,res) => {
       jwt.sign(rule,keys.secretName,{expiresIn:3600},(err,token) =>{
         if(err) throw err
         res.json({
-          msg:"success",
-          token:"Bearer " + token
+          status:"ok",
+          data: {
+            token:"Bearer " + token,
+            msg: '登录成功'
+          }
         })
       })
     }
