@@ -13,7 +13,9 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 const user = require("./routes/user")
+const goods = require('./routes/goods')
 app.use("/users",user)
+app.use('/goods',goods)
 
 app.listen(port,() =>{
     console.log(`server is running on ${port}`)
