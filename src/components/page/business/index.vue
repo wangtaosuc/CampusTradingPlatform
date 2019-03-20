@@ -69,6 +69,10 @@ export default {
             font-size: 23px;
           }
         }
+        .menu-item.router-link-exact-active.router-link-active {
+          background: blue;
+          color: #ffffff;
+        }
       }
     }
     .right-content {
