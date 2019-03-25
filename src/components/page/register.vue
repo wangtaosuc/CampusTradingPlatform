@@ -4,12 +4,16 @@
       .login-logo
       .login-form
         el-form(:model="ruleForm2", status-icon, :rules="rules2", ref="ruleForm2", label-width="100px", class="demo-ruleForm")
-          el-form-item(label="账号:" prop="userName", placeholder='请输入用户名')
-            el-input(v-model.number="ruleForm2.userName")
+          el-form-item(label="邮箱:" prop="userName", placeholder='请输入用户名')
+            el-input(v-model="ruleForm2.userName", type='email')
           el-form-item(label="密码:" prop="pass", placeholder='请输入密码')
             el-input(type="password" v-model="ruleForm2.pass" autocomplete="off")
           el-form-item(label="确认密码:" prop="checkPass", placeholder='请再次输入密码')
             el-input(type="password" v-model="ruleForm2.checkPass" autocomplete="off")
+          el-form-item(label='注册类型:')
+            .radio
+              el-radio(v-model="ruleForm2.radio", label="seller") 商家
+              el-radio(v-model='ruleForm2.radio', label='user') 用户
           el-form-item(label="验证码:").disFlex
             input.input-code(type='text', v-model='inputCode')
             .code(@click='createCode')
@@ -22,14 +26,16 @@
 </template>
 
 <script>
+import {Message} from 'element-ui'
+import {register} from '@/http/user.js'
 export default {
   name: 'App',
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('用户名不能为空'));
-      }
-    };
+    // var checkAge = (rule, value, callback) => {
+    //   if (!value) {
+    //     return callback(new Error('用户名不能为空'));
+    //   }
+    // };
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
@@ -53,7 +59,8 @@ export default {
       ruleForm2: {
         pass: '',
         checkPass: '',
-        userName: ''
+        userName: '',
+        radio: 'user'
       },
       rules2: {
         pass: [
@@ -63,7 +70,7 @@ export default {
           { validator: validatePass2, trigger: 'blur' }
         ],
         userName: [
-          { validator: checkAge, trigger: 'blur' }
+          { required: true, trigger: 'blur' }
         ]
       },
       inputCode: '',
@@ -72,18 +79,28 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log(111)
      if (this.canvStr === this.inputCode.toUpperCase()) {
-       console.log(222)
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.inputCode = ''
-          console.log('submit!');
+          let params = {
+            email: this.ruleForm2.userName,
+            password: this.ruleForm2.pass,
+            identity: this.ruleForm2.radio
+          }
+          register(params)
+          .then((res) => {
+            if (res.status === 200) {
+              Message.success('注册成功')
+              this.$router.push('/login')
+            }
+          })
+          .catch((err) => { console.log(err)})
         } else {
           console.log('error submit!!');
           return false;
         }
-      });
+      })
      } else {
       alert("验证码错误")
       this.createCode();
@@ -136,7 +153,7 @@ export default {
       margin-left: -240px;
       margin-top: -247px;
       width: 480px;
-      height: 494px;
+      height: 555px;
       // border: 1px solid black;
       border-radius: 10px;
       background: white;

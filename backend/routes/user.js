@@ -13,7 +13,7 @@ router.post("/register",(req,res) => {
         return res.status(400).json('邮箱已被注册!');
       }else{
         const newUser = new User({
-        name:req.body.name,
+        // name:req.body.name,
         email:req.body.email,
         password:req.body.password,
         identity: req.body.identity
