@@ -47,6 +47,9 @@ export default {
         login(this.userInfo).then((res) => {
           if (res.data.status === 'ok') {
             this.$router.push('/home')
+            window.msgServices.success('登录成功！')
+          } else {
+            window.msgServices.error('登录失败请重试！')
           }
         })
       }

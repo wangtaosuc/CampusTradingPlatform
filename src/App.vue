@@ -1,15 +1,21 @@
 <template lang='pug'>
   #app
-    m-header
-    router-view
+    m-shopcar
+    .g-content
+      .g-hd
+        m-header
+      .g-bd
+        router-view
 </template>
 
 <script>
 import header from './components/public/header'
+import shopCar from './components/public/shopCar'
 export default {
   name: 'App',
   components: {
-    'm-header': header
+    'm-header': header,
+    'm-shopcar': shopCar
   }
 }
 </script>
@@ -18,8 +24,19 @@ export default {
 @import url('./assets/style/reset.css');
 #app {
   width: 100vw;
-  height:100vh;
-  overflow:hidden;
-  background: #ccc;
+  height: 100vh;
+  display: flex;
+  // overflow: auto;
+  background: red;
+  .g-content{
+    overflow-y: auto;
+    flex: auto;
+    background-color: #fff;
+    .g-bd {
+      // height: calc(100% - 64px);
+      width: 100%;
+      overflow: auto;
+    }
+  }
 }
 </style>

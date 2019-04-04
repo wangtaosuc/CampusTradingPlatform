@@ -49,6 +49,14 @@ router.get("/",(req,res) => {
     })
 })
 
+// 获取单个商品详情
+router.get('/:_id', (req, res) => {
+  Goods.findById(req.params._id)
+    .then(good => {
+      res.json({data: good, status: 200})
+    })
+})
+
 // 编辑单个商品
 // POST     /goods/:id
 router.post('/:id', (req, res) => {

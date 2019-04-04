@@ -12,16 +12,16 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push({path:'login'})
+      this.$router.push({path:'/login'})
     },
     register() {
-      this.$router.push({path:'register'})
+      this.$router.push({path:'/register'})
     },
     toMyOrder () {
-      this.$router.push({path:'myOrder'})
+      this.$router.push({path:'/myOrder'})
     },
     returnHome () {
-      this.$router.push({path:'home'})
+      this.$router.push({path:'/home'})
     }
   }
 }

@@ -41,7 +41,7 @@ var router = new Router({
       }
     },
     {
-      path: '/goodsDetail',
+      path: '/goodsDetail/:id',
       name: 'GoodsDetail',
       component: GoodsDetail,
       meta: {
