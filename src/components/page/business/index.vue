@@ -15,7 +15,7 @@
 export default {
   data() {
     return {
-      menuList: [{name: '我的店铺', icon: 'shop'}, {name: '商品管理', icon: 'goods'}, {name: '订单管理', icon: 'order'}, {name: '售后服务', icon: 'service'}]
+      menuList: [{name: '我的店铺', icon: 'shop'}, {name: '商品管理', icon: 'goods'}, {name: '订单详情', icon: 'order'}, {name: '售后服务', icon: 'service'}]
     }
   }
 }
