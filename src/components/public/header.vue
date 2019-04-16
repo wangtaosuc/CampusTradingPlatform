@@ -4,6 +4,7 @@
     .login(@click='login') 登录
     .register(@click='register') 注册
     .myOrder(@click='toMyOrder') 购物车
+    .business(@click='toBusiness') 商家中心
 </template>
 <script>
 export default {
@@ -22,6 +23,9 @@ export default {
     },
     returnHome () {
       this.$router.push({path:'/home'})
+    },
+    toBusiness() {
+      this.$router.push({path: '/business'})
     }
   }
 }
@@ -39,7 +43,7 @@ export default {
       cursor: pointer;
     //   display: inline-block;
     }
-    .login, .register, .myOrder {
+    .login, .register, .myOrder, .business {
       float: right;
       color: #fff;
       margin-right: 20px;

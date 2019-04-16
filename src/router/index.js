@@ -8,10 +8,14 @@ import Register from '@/components/page/register.vue'
 import GoodsDetail from '@/components/page/goodsDetail.vue'
 import MyOrder from '@/components/page/myOrder.vue'
 import Business from '@/components/page/business/index.vue'
+import User from '@/components/page/user/index.vue'
 const shop = resolve => require(['@/components/page/business/shop.vue'], resolve);
 const goods = resolve => require(['@/components/page/business/goods.vue'], resolve);
 const order = resolve => require(['@/components/page/business/order.vue'], resolve);
 const service = resolve => require(['@/components/page/business/service.vue'], resolve);
+
+// user
+
 var router = new Router({
   mode: 'history',
   routes: [
@@ -85,6 +89,11 @@ var router = new Router({
           component: service
         }
       ]
+    },
+    {
+      path: '/user/',
+      name: 'user',
+      component: User
     }
   ]
 })
