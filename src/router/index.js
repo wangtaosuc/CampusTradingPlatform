@@ -13,6 +13,10 @@ const shop = resolve => require(['@/components/page/business/shop.vue'], resolve
 const goods = resolve => require(['@/components/page/business/goods.vue'], resolve);
 const order = resolve => require(['@/components/page/business/order.vue'], resolve);
 const service = resolve => require(['@/components/page/business/service.vue'], resolve);
+const myCollection = resolve => require(['@/components/page/user/myCollection.vue'], resolve)
+const buyGoods = resolve => require(['@/components/page/user/buyGoods.vue'], resolve)
+const myOrders = resolve => require(['@/components/page/user/myOrders.vue'], resolve)
+const baseInfo = resolve => require(['@/components/page/user/baseInfo.vue'], resolve)
 
 // user
 
@@ -93,8 +97,28 @@ var router = new Router({
     {
       path: '/user/',
       name: 'user',
-      component: User
-    }
+      component: User,
+      meta: {
+        title: '用户中心'
+      },
+      children: [{
+        path: 'baseInfo',
+        name: 'baseInfo',
+        component: baseInfo
+      },{
+        path: 'myOrders',
+        name: 'myOrders',
+        component: myOrders
+      },{
+        path: 'buyGoods',
+        name: 'buyGoods',
+        component: buyGoods
+      },{
+        path: 'myCollection',
+        name: 'myCollection',
+        component: myCollection
+      }]
+  }
   ]
 })
 

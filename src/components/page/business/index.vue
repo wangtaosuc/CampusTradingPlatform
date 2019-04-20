@@ -30,7 +30,7 @@ export default {
     .left-list {
       width: 180px;
       height: 100%;
-      border-right: 1px solid black;
+      // border-right: 1px solid black;
       display: flex;
       flex-direction: column;
       .title {
@@ -49,6 +49,9 @@ export default {
           width: 100%;
           height: 40px;
           display: flex;
+          border-bottom: 1px solid #ddd;
+          box-shadow: 2px 2px 2px #ddd;
+          color: #000;
           span {
             display: inline-block;
             height: 100%;

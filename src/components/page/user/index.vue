@@ -1,7 +1,7 @@
 <template lang='pug'>
   .business
     .left-list
-      .title 商家中心
+      .title 用户中心
       .menu-list
         router-link.menu-item(v-for='(ele, index) in menuList', :to="{name: ele.icon}", :key='index')
           span.icon ❤
@@ -15,7 +15,7 @@
 export default {
   data() {
     return {
-      menuList: [{name: '基本资料', icon: 'shop'}, {name: '全部订单', icon: 'goods'}, {name: '已购买的商品', icon: 'order'}, {name: '我的收藏', icon: 'service'}]
+      menuList: [{name: '基本资料', icon: 'baseInfo'}, {name: '全部订单', icon: 'myOrders'}, {name: '已购买的商品', icon: 'buyGoods'}, {name: '我的收藏', icon: 'myCollection'}]
     }
   }
 }
@@ -30,13 +30,13 @@ export default {
     .left-list {
       width: 180px;
       height: 100%;
-      border-right: 1px solid black;
+      // border-right: 1px solid black;
       display: flex;
       flex-direction: column;
       .title {
         width: 100%;
         height: 60px;
-        border-bottom: 1px solid black;
+        // border-bottom: 1px solid black;
         text-align: center;
         line-height: 60px;
         font-size: 30px;
@@ -49,6 +49,9 @@ export default {
           width: 100%;
           height: 40px;
           display: flex;
+          border: 1px solid #ddd;
+          box-shadow: 2px 2px 2px #ddd;
+          color: #000;
           span {
             display: inline-block;
             height: 100%;
@@ -70,7 +73,7 @@ export default {
           }
         }
         .menu-item.router-link-exact-active.router-link-active {
-          background: blue;
+          background: rgb(5, 151, 219);
           color: #ffffff;
         }
       }
