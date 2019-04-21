@@ -8,6 +8,19 @@
           span.name {{ele.name}}
           span.right &gt;
     .right-content
+      .topInfo
+        .content
+          .image
+          .infoWrapper
+            .top_info 您好！
+              span.name {{name}},
+              span.blessing  祝您新的一天里健康，快乐
+            .bottom_info
+              span.safe 账户安全：
+                span.low 低
+              span.renzheng 
+                span.noRenzheng 未认证
+              span.band 绑定
       router-view
 </template>
 
@@ -15,7 +28,8 @@
 export default {
   data() {
     return {
-      menuList: [{name: '基本资料', icon: 'baseInfo'}, {name: '全部订单', icon: 'myOrders'}, {name: '已购买的商品', icon: 'buyGoods'}, {name: '我的收藏', icon: 'myCollection'}]
+      menuList: [{name: '基本资料', icon: 'baseInfo'}, {name: '全部订单', icon: 'myOrders'}, {name: '已购买的商品', icon: 'buyGoods'}, {name: '我的收藏', icon: 'myCollection'}],
+      name: '汪涛',
     }
   }
 }
@@ -80,6 +94,48 @@ export default {
     }
     .right-content {
       width: calc(100% - 180px);
+      .topInfo {
+        width: 100%;
+        height: 110px;
+        // background-image: url('../../../assets/images/home.jpeg');
+        margin: 0 auto;
+        min-width: 850px;
+        .content {
+          width: 80%;
+          min-width: 850px;
+          height: 100%;
+          background: #ddd;
+          margin: 0 auto;
+          display:flex;
+          align-items: center;
+          .image {
+            width: 100px;
+            height:100px;
+            margin: 5px 5px;
+            // background: red;
+          }
+          .infoWrapper {
+            width: calc(100% - 115px);
+            height: 100px;
+            // background: blue;
+            box-sizing: border-box;
+            padding: 5px 15px;
+            .top_info, .bottom_info {
+              width: 100%;
+              height: 50%;
+              line-height: 50px;
+            }
+            .top_info {
+              border-bottom: 1px solid black;
+              .name {
+                font-size: 18px;
+                font-weight: 400px;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
       // background-color: red;
     }
   }
