@@ -4,16 +4,16 @@
       el-row
         el-col(:span='4', style='padding:10px;', v-for='(item, index) in goodsData', :key='index')
           .goods(style='background:#ccc;height:380px')
-            .goodsPic(style='width:100%;height:240px;border:1px solid red;', @click='clickDetail(item)') {{ item.goodsPic }}图片
-            .goods-row-1
+            .goodsPic(style='width:100%;height:240px;border:1px solid #fff;', @click='clickDetail(item)') {{ item.goodsPic }}
+            .goods-row-1.f-m-t-20.f-m-l-10
               span.goodsPrice(style='font-size:18px;color: #F40;font-weight:700;') ￥{{ item.goodsPrice }}
-              span.seller(style='float:right') 1000人付款
-            .goods-row-2
-              .goodsName {{ item.goodsName }}(商品名)
-            .goods-row-3
-              span.storeName {{ item.storeName }}(店铺名)
-              span.storeLocation {{ item.storeLocation }}(地址)
-            .goodsNum {{ item.goodsNum }}
+              span.seller(style='float:right') {{ item.goodsNum }}人付款
+            .goods-row-2.f-m-t-20.f-m-l-10
+              span.goodsName {{ item.goodsName }}
+              span.iconfont.iconcar
+            .goods-row-3.f-m-t-20.f-m-l-10
+              span.storeName.f-m--20 {{ item.storeName }}
+              span.storeLocation.f-m-l-20 {{ item.storeLocation }}
       m-copyright
 </template>
 

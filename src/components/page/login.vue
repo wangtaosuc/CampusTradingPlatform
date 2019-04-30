@@ -67,22 +67,28 @@ export default {
 
 <style lang='scss'>
   .wrapper {
-    width: 100%;
-    height: calc(100% - 64px);
-    background: rgb(19, 29, 41);
+    width: 100vw;
+    height: 100vh;
+    background: url('../../assets/images/home1.jpg');
+    background-size: 100% 100%;
     .content {
       width: 400px;
-      height: 450px;
+      height: 480px;
+      background: rgb(224, 222, 222);
       border: 1px solid #ffffff;
       position: absolute;
       left: 50%;
       top: 50%;
       margin-left: -200px;
       margin-top: -225px;
+      border-radius: 10px;
       .login-header {
-        width: 100%;
-        height: 160px;
-        border-bottom: 1px solid #ffffff;
+        width: 208px;
+        height: 172px;
+        margin: 5px auto 0;
+        background: url('../../assets/images/logo.png');
+        background-size: 100% 100%;
+        // border-bottom: 1px solid #ffffff;
       }
       .login-content {
         .input-user,
@@ -128,7 +134,7 @@ export default {
             width: 60%;
             height: 100%;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #000;
             input {
               margin-right: 10px;
               cursor: pointer;
@@ -176,7 +182,7 @@ export default {
           box-sizing: border-box;
           padding-right: 10px;
           a {
-            color: #eeeeee;
+            color: #20a0ff;
             font-size: 12px;
             &:hover {
               text-decoration: underline;

@@ -2,20 +2,34 @@
   .transferStation
     .station-left(@click='isShow')
       .station-left-content
-        .station-left-text 中转站
-        .allNum
-          el-badge
+        .station-left-text 购物车
+        //- .allNum
+        //-   el-badge
     .station-right(:class='{rightVisible:sideVisible}')
       .right-content
         .right-top
-        //-   el-button.iconFont.icon-cancelSelectAll(size='small', type='primary', v-if='isSelectedAll', ref='selectAll', @click="selectAll()")
-        //-     span.f-m-l-5 全选
-        //-   el-button.iconFont.icon-selectAll( size='small', type='primary', v-if='!isSelectedAll', ref='selectAll', @click="selectAll()")
-        //-     span.f-m-l-5 全选
-        //-   el-button.iconFont.icon-deleteAll(:disabled='allNum === 0', size='small', type='primary', @click="deleteAllTransferStation()")
-        //-     span.f-m-l-5 清空
-        //-   el-button.iconFont(size='small', type='primary', @click='seeAll()')
-        //-     span.f-m-l-5 查看全部
+          el-button.iconFont.icon-cancelSelectAll(size='small', type='primary', v-if='isSelectedAll', ref='selectAll', @click="selectAll()")
+            span.f-m-l-5 全选
+          el-button.iconFont.icon-selectAll( size='small', type='primary', v-if='!isSelectedAll', ref='selectAll', @click="selectAll()")
+            span.f-m-l-5 全选
+          el-button.iconFont.icon-deleteAll(:disabled='allNum === 0', size='small', type='primary', @click="deleteAllTransferStation()")
+            span.f-m-l-5 清空
+          el-button.iconFont(size='small', type='primary', @click='seeAll()')
+            span.f-m-l-5 查看全部
+        el-table(:data="data", ref="allMultipleTable", tooltip-effect="dark")
+          el-table-column(type='selection')
+          //- el-table-column(label='大白兔小店')
+          //-   template(slot-scope='scope') {{ scope.row.name }}
+          el-table-column(label='保罗的小店')
+            template(slot-scope='scope')
+              .table-left(style='width:40%;float:left')
+                span.name {{scope.row.name}}
+              .table-right(style='width:60%;float:right')
+                el-button(size='mini') -
+                span(style='margin:0 2px;') {{scope.row.num}}
+                el-button(size='mini') +
+                span(style='font-size:12px;color:#1890ff;margin-left:20px;') 删除
+        //-       template(slot-scope='scope') {{ scope.row.caseName[0] }}
         //- .case(v-if='caseInfo.length > 0')
         //-   .moreInfo(v-if='caseInfoAll.length > 5', @click='clickDetail()') 更多
         //-   el-table(:data="caseInfo", ref="caseMultipleTable", tooltip-effect="dark", @selection-change='handleSelectCase')
@@ -52,12 +66,15 @@
         //-     el-table-column(align='center', width="90")
         //-       template(slot-scope='scope')
         //-         el-button.iconfont.icon-deleteAll(title='删除', type="text", size="small", @click='deleteDevice(scope.row)')
-        .nothing(style='font-size:26px;margin:10px;color:#409EFF', v-if='(caseInfo.length + personInfo.length + accountInfo.length + deviceInfo.length) <= 0') 中转站空空如也哦！
-    //-   .dataAnalysis
-    //-     el-button.iconFont.icon-DataAnalysis(size='small', type='primary', @click='lateralAlignment()')
-    //-       span.f-m-l-5 横向比对
-    //-     el-button.iconFont.icon-DataAnalysis(size='small', type='primary', @click='timeAxis()')
-    //-       span.f-m-l-5 时间轴分析
+        //- .nothing(style='font-size:26px;margin:10px;color:#409EFF', v-if='(caseInfo.length + personInfo.length + accountInfo.length + deviceInfo.length) <= 0') 购物车空空如也哦！
+      .dataAnalysis
+        .ddd(style='margin:10px 20px')
+          span.f-fl 已选 6 件
+          span.f-fr(style='font-size:13px;color:red') ￥1945 
+        el-button(style='width:90%;margin-top:10px;',size='small', type='primary')
+          span.f-m-l-5 结算
+        //- el-button(size='small', type='primary')
+        //-   span.f-m-l-5 时间轴分析
 </template>
 <script>
 // import { showTransferStation, deleteTransferStation, deleteAllTransferStation, getTimeLineMenu, getTimeRange, getRelationStatistics, getTransferContent } from '@/service/user'
@@ -69,6 +86,37 @@ export default {
   name: 'transferStation',
   data () {
     return {
+      data: [{
+        name: '9成新山地自行车',
+        store: '大白兔小店',
+        price: 399,
+        num: 1
+      },{
+        name: '华为荣耀 10',
+        store: '大白兔小店',
+        price: 1299,
+        num: 1
+      },{
+        name: 'ipad',
+        store: '大白兔小店',
+        price: 16,
+        num: 1
+      },{
+        name: '西湖龙井茶叶',
+        store: '大白兔小店',
+        price: 16,
+        num: 2
+      },{
+        name: '大白兔牛奶糖',
+        store: '大白兔小店',
+        price: 16,
+        num: 1
+      },{
+        name: '傲风电竞椅',
+        store: '大白兔小店',
+        price: 199,
+        num: 1
+      }],
       sideVisible: true,
       caseInfo: [],
       personInfo: [],
@@ -90,59 +138,59 @@ export default {
     }
   },
   mounted () {
-    // Bus.$on('getTransferStationInfo', (type) => {
-    //   this.getTransferStationInfo(type)
-    // })
+    Bus.$on('getTransferStationInfo', (type) => {
+      this.getTransferStationInfo(type)
+    })
   },
   computed: {
-    // allNum () {
-    //   return this.caseInfoAll.length + this.personInfoAll.length + this.accountInfoAll.length + this.deviceInfoAll.length
-    // }
+    allNum () {
+      return this.caseInfoAll.length + this.personInfoAll.length + this.accountInfoAll.length + this.deviceInfoAll.length
+    }
   },
   methods: {
-    // clickDetail () {
-    //   this.$router.push({path: '/browse/transferStation'})
-    //   this.sideVisible = true
-    // },
-    // seeAll () {
-    //   this.$router.push({path: '/browse/transferStation'})
-    //   this.sideVisible = true
-    // },
-    // selectAll () {
-    //   if (this.caseInfo) {
-    //     this.caseInfo.forEach(row => {
-    //       this.$refs.caseMultipleTable.toggleRowSelection(row, !this.caseSelect)
-    //     })
-    //     this.caseSelect = !this.caseSelect
-    //   } else {
-    //     this.$refs.caseMultipleTables.clearSelection()
-    //   }
-    //   if (this.personInfo) {
-    //     this.personInfo.forEach(row => {
-    //       this.$refs.personMultipleTable.toggleRowSelection(row, !this.personSelect)
-    //     })
-    //     this.personSelect = !this.personSelect
-    //   } else {
-    //     this.$refs.personMultipleTables.clearSelection()
-    //   }
-    //   if (this.accountInfo) {
-    //     this.accountInfo.forEach(row => {
-    //       this.$refs.accountMultipleTable.toggleRowSelection(row, !this.accountSelect)
-    //     })
-    //     this.accountSelect = !this.accountSelect
-    //   } else {
-    //     this.$refs.accountMultipleTable.clearSelection()
-    //   }
-    //   if (this.deviceInfo) {
-    //     this.deviceInfo.forEach(row => {
-    //       this.$refs.deviceMultipleTable.toggleRowSelection(row, !this.deviceSelect)
-    //     })
-    //     this.deviceSelect = !this.deviceSelect
-    //   } else {
-    //     this.$refs.deviceMultipleTable.clearSelection()
-    //   }
-    //   this.isSelectedAll = !this.isSelectedAll
-    // },
+    clickDetail () {
+      this.$router.push({path: '/browse/transferStation'})
+      this.sideVisible = true
+    },
+    seeAll () {
+      this.$router.push({path: '/browse/transferStation'})
+      this.sideVisible = true
+    },
+    selectAll () {
+      if (this.caseInfo) {
+        this.caseInfo.forEach(row => {
+          this.$refs.caseMultipleTable.toggleRowSelection(row, !this.caseSelect)
+        })
+        this.caseSelect = !this.caseSelect
+      } else {
+        this.$refs.caseMultipleTables.clearSelection()
+      }
+      if (this.personInfo) {
+        this.personInfo.forEach(row => {
+          this.$refs.personMultipleTable.toggleRowSelection(row, !this.personSelect)
+        })
+        this.personSelect = !this.personSelect
+      } else {
+        this.$refs.personMultipleTables.clearSelection()
+      }
+      if (this.accountInfo) {
+        this.accountInfo.forEach(row => {
+          this.$refs.accountMultipleTable.toggleRowSelection(row, !this.accountSelect)
+        })
+        this.accountSelect = !this.accountSelect
+      } else {
+        this.$refs.accountMultipleTable.clearSelection()
+      }
+      if (this.deviceInfo) {
+        this.deviceInfo.forEach(row => {
+          this.$refs.deviceMultipleTable.toggleRowSelection(row, !this.deviceSelect)
+        })
+        this.deviceSelect = !this.deviceSelect
+      } else {
+        this.$refs.deviceMultipleTable.clearSelection()
+      }
+      this.isSelectedAll = !this.isSelectedAll
+    },
     // deleteAllTransferStation () {
     //   this.$confirm('确认清空中转站？', '确认信息', {
     //     distinguishCancelAndClose: true,
@@ -437,10 +485,12 @@ export default {
           background: #ccc;
         }
       .dataAnalysis {
+        position: absolute;
+        bottom:0;
         width:320px;
-        height:60px;
+        height:80px;
         background:rgb(188, 217, 245);
-        line-height:60px;
+        // line-height:60px;
         text-align:center;
         .iconFont {
           font-family: "iconfont" !important;
