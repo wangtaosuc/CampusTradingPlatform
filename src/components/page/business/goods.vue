@@ -2,7 +2,21 @@
   .goods
     .goods-left
       .goods-header
-         el-button.f-m-l-10(type="primary", size='small') 添加商品
+         el-button.f-m-l-10(type="primary", size='small', @click='showGoodsList = true') 添加商品
+         el-dialog(width='40%', :visible.sync='showGoodsList')
+          .grounding
+            el-form(:model='groundingInfo', :rules='rules', ref='ruleForm', class='demo-ruleForm')
+              el-form-item(label='商品名称', prop='name')
+                el-input(v-model='groundingInfo.name')
+              el-form-item(label='商品价格', prop='price')
+                el-input(v-model='groundingInfo.price')
+              el-form-item(label='商品数量', prop='num')
+                el-input(v-model='groundingInfo.num')
+              el-form-item(label='商品图片')
+                el-input(type='file')
+          span(slot='footer', class='dialog-footer')
+            el-button(@click='showGoodsList = false') 取消
+            el-button(type='primary', @click='showGoodsList = false')  添加
       .goods-content
         li.goods-item(v-for='(ele, index) in goodList', :key='index')
           .item-img
@@ -28,7 +42,24 @@
 export default {
   data() {
     return {
-      goodList: [{}, {}, {}, {}, {}, {}, {}]
+      goodList: [{}, {}, {}, {}, {}, {}, {}],
+      showGoodsList: false,
+      groundingInfo: {
+        name: '',
+        price: null,
+        num: null
+      },
+      rules: {
+        name: [
+          { required: true, message: '商品名称不能为空', trigger: 'blur'}
+        ],
+        price: [
+          { required: true, message: '商品价格不能为空', trigger: 'blur'}
+        ],
+        num: [
+          { required: true, message: '商品数量不能为空', trigger: 'blur'}
+        ]
+      }
     }
   }
 }
@@ -49,6 +80,10 @@ export default {
         background: pink;
         display: flex;
         align-items: center;
+        .grounding {
+          width: 100%;
+          height: 500px;
+        }
       }
       .goods-content {
         width: 100%;
