@@ -78,8 +78,8 @@
 </template>
 <script>
 // import { showTransferStation, deleteTransferStation, deleteAllTransferStation, getTimeLineMenu, getTimeRange, getRelationStatistics, getTransferContent } from '@/service/user'
-// import Bus from '../lib/bus'
-// import _ from 'lodash'
+import Bus from '@/lib/bus'
+import _ from 'lodash'
 // import moment from 'moment'
 export default {
 //   inject: ['reload'],
