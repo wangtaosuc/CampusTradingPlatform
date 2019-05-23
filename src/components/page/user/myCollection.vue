@@ -23,7 +23,10 @@
         .total ￥
           span {{collect.price * collect.num}}
         .operation
-          .btn
+          .btn.btn-buy
+            i.el-icon-circle-plus
+            span [加入购物车]
+          .btn.btn-delete
             i.el-icon-remove
             span [删除]
 </template>
@@ -43,6 +46,21 @@ export default {
         price: 888,
         num: 1,
         color: '天蓝色'
+      },{
+        name: '加绒羽绒服（雪中飞）',
+        price: 888,
+        num: 1,
+        color: '曼巴黑'
+      },{
+        name: '加绒羽绒服（雪中飞）',
+        price: 888,
+        num: 1,
+        color: '曼巴黑'
+      },{
+        name: '加绒羽绒服（雪中飞）',
+        price: 888,
+        num: 1,
+        color: '曼巴黑'
       },{
         name: '加绒羽绒服（雪中飞）',
         price: 888,
@@ -167,8 +185,12 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-direction: column;
           .btn {
             cursor: pointer;
+            display: block;
+            width: 107px;
+            margin: 7px 0;
           }
           i {
             color: rgb(207, 7, 7);
