@@ -71,7 +71,7 @@ router.post('/:id', (req, res) => {
   }
   Goods.findByIdAndUpdate(
     {_id:req.params.id},
-    {$set:updateCash},
+    {$set:goods},
     {new:true}).then(goods => {
         res.json({data: goods, status: 200})
       })

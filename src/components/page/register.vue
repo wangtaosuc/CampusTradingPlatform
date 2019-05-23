@@ -144,7 +144,7 @@ export default {
     width: 100vw;
     height: 100vh;
     // background:linear-gradient(to bottom right, rgb(0, 0, 0) , rgb(255, 255, 233));
-    background: url('../../assets/images/home1.jpg');
+    background: url('../../assets/images/home.jpeg');
     background-size: 100% 100%;
     .login-content {
       position: absolute;

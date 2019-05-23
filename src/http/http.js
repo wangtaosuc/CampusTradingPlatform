@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
 
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 10000
 
 // deveplopment 本地转发
 

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require("body-parser")
 const mongoose = require('mongoose')
-const port = 5000
+const port = 5500
 
 const mongo = require("./config/keys")
 mongoose.connect(mongo.mongoURI, () => {
@@ -14,8 +14,10 @@ app.use(bodyParser.json())
 
 const user = require("./routes/user")
 const goods = require('./routes/goods')
+const shopCar = require('./routes/shopCar')
 app.use("/users",user)
 app.use('/goods',goods)
+app.use('/shopCar',shopCar)
 
 app.listen(port,() =>{
     console.log(`server is running on ${port}`)

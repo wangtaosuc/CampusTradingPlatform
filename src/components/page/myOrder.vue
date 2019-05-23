@@ -2,9 +2,7 @@
   .myOrder
     el-card(shadow='never', :body-style='{background:"#eee"}')
       .tHeader
-        el-button.iconFont.icon-cancelSelectAll(size='small', type='primary', ref='selectAll')
-          span.f-m-l-5 全选
-        el-button.iconFont.icon-deleteAll(size='small', type='primary')
+        el-button.iconFont.icon-deleteAll(@click="deleteAll()", size='small', type='primary')
           span.f-m-l-5 清空
       .tBody
         el-table(:data="data", ref="allMultipleTable", tooltip-effect="dark")
@@ -21,48 +19,57 @@
                   el-tooltip(transition='linear', effect="dark", content="采集时间", placement="top", :open-delay='400')
                     span.cupTime {{ scope.row.store }}
               .caseRight
-                el-button(type="text", size="small") 删除
+                el-button(@click='del(scope.row._id)', type="text", size="small") 删除
 </template>
 <script>
+import Bus from '../../lib/bus'
+import { getShopCar, delShopCar, delAll } from '../../http/user.js'
 import copyright from '../public/copyright'
 export default {
   data () {
     return {
-      data: [{
-        name: '9成新山地自行车',
-        store: '大白兔小店',
-        price: 399,
-        num: 1
-      },{
-        name: '华为荣耀 10',
-        store: '大白兔小店',
-        price: 1299,
-        num: 1
-      },{
-        name: 'ipad',
-        store: '大白兔小店',
-        price: 16,
-        num: 1
-      },{
-        name: '西湖龙井茶叶',
-        store: '大白兔小店',
-        price: 16,
-        num: 2
-      },{
-        name: '大白兔牛奶糖',
-        store: '大白兔小店',
-        price: 16,
-        num: 1
-      },{
-        name: '傲风电竞椅',
-        store: '大白兔小店',
-        price: 199,
-        num: 1
-      }]
+      data: []
     }
   },
   components: {
     'm-copyright': copyright
+  },
+  mounted () {
+    this.getShopCar()
+    Bus.$on('getShopCarBrowse', () => {
+      this.getShopCar()
+    })
+  },
+  methods: {
+    getShopCar () {
+      getShopCar().then(res => {
+        this.data = res.data.data
+      })
+    },
+    del (id) {
+      delShopCar(id).then(res => {
+        this.getShopCar()
+        Bus.$emit('getShopCar')
+      })
+    },
+    deleteAll () {
+      this.$confirm('确认清空购物车？', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确认',
+        cancelButtonText: '取消'
+      })
+        .then(() => {
+          delAll().then(res => {
+            console.log(res)
+          })
+          this.getShopCar()
+          window.msgServices.success('清空购物车成功！')
+          Bus.$emit('getShopCar')
+        })
+        .catch(action => {
+          window.msgServices.info('您已取消清空购物车！')
+        })
+    }
   }
 }
 </script>

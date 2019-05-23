@@ -43,7 +43,8 @@ router.post("/login",(req,res) => {
           status:"ok",
           data: {
             token:"Bearer " + token,
-            msg: '登录成功'
+            msg: '登录成功',
+            user: user
           }
         })
       })

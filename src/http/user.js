@@ -10,3 +10,11 @@ export const getAllGoods = (params) => { return axios.get('/goods', params)}
 export const getSingleGood = (params) => { return axios.get(`/goods/${params.id}`)}
 export const editGoods = (params) => { return axios.post('/goods/:id', params)}
 export const undercarriage = (params) => { return axios.post('/goods/pullOff/:id', params)}
+
+// shopcar
+export const addShopCar = (params) => { return axios.post('/shopCar', params)}
+export const getShopCar = (params) => { return axios.get('/shopCar', params)}
+export const delShopCar = (params) => { return axios.delete(`/shopCar/${params}`, params)}
+export const delAll = (params) => { return axios.delete(`/shopCar`, params)}
+
+

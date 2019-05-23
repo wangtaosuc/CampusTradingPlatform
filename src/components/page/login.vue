@@ -25,6 +25,7 @@
 <script>
 import copyright from '../public/copyright'
 import {login} from '@/http/user.js'
+import Bus from '../../lib/bus'
 export default {
   components: {
     'm-copyright': copyright
@@ -48,6 +49,12 @@ export default {
           if (res.data.status === 'ok') {
             this.$router.push('/home')
             window.msgServices.success('登录成功！')
+            this.$store.commit('setEmail', res.data.data.user.email)
+            this.$store.commit('setIdentity', res.data.data.user.identity)
+            this.$store.commit('setIsLogin', true)
+            Bus.$emit('initData')
+            Bus.$emit('getEmail')
+            console.log(res.data)
           } else {
             window.msgServices.error('登录失败请重试！')
           }
@@ -69,7 +76,7 @@ export default {
   .wrapper {
     width: 100vw;
     height: 100vh;
-    background: url('../../assets/images/home1.jpg');
+    background: url('../../assets/images/home.jpeg');
     background-size: 100% 100%;
     .content {
       width: 400px;

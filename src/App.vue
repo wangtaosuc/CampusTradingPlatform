@@ -26,16 +26,13 @@ export default {
   width: 100vw;
   height: 100vh;
   display: flex;
-  // overflow: auto;
-  background: red;
   .g-content{
-    overflow-y: auto;
     flex: auto;
     background-color: #fff;
     .g-bd {
       height: calc(100% - 64px);
-      width: 100%;
-      overflow: auto;
+      width: calc(100% - 30px);
+      overflow-y: auto;
     }
   }
 }
