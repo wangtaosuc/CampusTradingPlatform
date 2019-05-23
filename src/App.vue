@@ -33,7 +33,7 @@ export default {
     flex: auto;
     background-color: #fff;
     .g-bd {
-      // height: calc(100% - 64px);
+      height: calc(100% - 64px);
       width: 100%;
       overflow: auto;
     }

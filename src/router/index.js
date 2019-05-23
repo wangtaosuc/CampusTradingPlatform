@@ -97,6 +97,7 @@ var router = new Router({
     {
       path: '/user/',
       name: 'user',
+      redirect: '/user/baseInfo',
       component: User,
       meta: {
         title: '用户中心'
