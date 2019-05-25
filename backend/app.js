@@ -15,9 +15,11 @@ app.use(bodyParser.json())
 const user = require("./routes/user")
 const goods = require('./routes/goods')
 const shopCar = require('./routes/shopCar')
+const community = require('./routes/community')
 app.use("/users",user)
 app.use('/goods',goods)
 app.use('/shopCar',shopCar)
+app.use('/community', community)
 
 app.listen(port,() =>{
     console.log(`server is running on ${port}`)

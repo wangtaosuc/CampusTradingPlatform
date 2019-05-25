@@ -4,17 +4,17 @@
       .title 用户中心
       .menu-list
         router-link.menu-item(v-for='(ele, index) in menuList', :to="{name: ele.icon}", :key='index')
-          span.icon ❤
+          //- span.icon ❤
           span.name {{ele.name}}
-          span.right &gt;
+          //- span.right &gt;
     .right-content
       .topInfo
         .content
           .image
           .infoWrapper
             .top_info 您好！
-              span.name {{name}},
-              span.blessing  祝您新的一天里健康，快乐
+              span.name {{email}},
+              span.blessing  祝您新的一天里健康,快乐
             .bottom_info
               span.safe 账户安全：
                 span.low 低
@@ -25,12 +25,29 @@
 </template>
 
 <script>
+import Bus from '@/lib/bus.js'
 export default {
   data() {
     return {
       menuList: [{name: '基本资料', icon: 'baseInfo'}, {name: '全部订单', icon: 'myOrders'}, {name: '已购买的商品', icon: 'buyGoods'}, {name: '我的收藏', icon: 'myCollection'}],
       name: '汪涛',
+      email: '123@qq.com',
+      identity: '',
+      isLogin: ''
     }
+  },
+  methods: {
+    initData () {
+      this.email = this.$store.state.email
+      this.identity = this.$store.state.identity
+      this.isLogin = this.$store.state.isLogin
+      console.log(this.email, this.identity, this.isLogin)
+    }
+  },
+  mounted() {
+    Bus.$on('initData', () => {
+      this.initData()
+    })
   }
 }
 </script>
@@ -42,19 +59,18 @@ export default {
     background-color: #ffffff;
     display: flex;
     .left-list {
-      width: 180px;
+      width: 220px;
       height: 100%;
-      // border-right: 1px solid black;
       display: flex;
       flex-direction: column;
       .title {
         width: 100%;
         height: 60px;
-        // border-bottom: 1px solid black;
         text-align: center;
         line-height: 60px;
         font-size: 30px;
         font-weight: bolder;
+        border-bottom: 1px solid rgb(237, 237, 237);
       }
       .menu-list {
         font-size: 14px;
@@ -63,15 +79,17 @@ export default {
           width: 100%;
           height: 40px;
           display: flex;
-          border: 1px solid #ddd;
-          box-shadow: 2px 2px 2px #ddd;
+          // border: 1px solid #ddd;
+          // box-shadow: 2px 2px 2px #ddd;
           color: #000;
           span {
             display: inline-block;
             height: 100%;
+            width: 100%;
+            text-align: center;
             line-height: 40px;
             font-size: 16px;
-            text-align: center;
+            // text-align: center;
             cursor: pointer;
           }
           .icon {
@@ -79,7 +97,10 @@ export default {
           }
           .name {
             flex: 1;
-            text-align: left;
+            text-align: center;
+            &:hover {
+              color: rgb(243, 69, 53);
+            }
           }
           .right {
             width: 25px;
@@ -94,6 +115,7 @@ export default {
     }
     .right-content {
       width: calc(100% - 180px);
+      background: rgb(240, 243, 239);
       .topInfo {
         width: 100%;
         height: 110px;
@@ -104,7 +126,7 @@ export default {
           width: 80%;
           min-width: 850px;
           height: 100%;
-          background: #ddd;
+          // background: #ddd;
           margin: 0 auto;
           display:flex;
           align-items: center;
@@ -130,7 +152,8 @@ export default {
               .name {
                 font-size: 18px;
                 font-weight: 400px;
-                color: #fff;
+                // color: #fff;
+                color: rgb(75, 75, 241);
               }
             }
           }

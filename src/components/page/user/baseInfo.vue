@@ -26,24 +26,38 @@
 </template>
 
 <script>
+import Bus from '@/lib/bus.js'
 import copyright from '@/components/public/copyright'
 export default {
   data() {
     return {
-      credit: 3.7
+      credit: 3.7,
+      email: '',
+      identity: '',
+      isLogin: ''
     }
   },
   components: {
     'm-copyright': copyright
+  },
+  mounted () {
+    Bus.$on('initData', () => {
+      this.initData()
+    })
+  },
+  methods: {
+    initData () {
+      this.email = this.$store.state.email
+      this.identity = this.$store.state.identity
+      this.isLogin = this.$store.state.isLogin
+    },
   }
 }
 </script>
 
 <style lang='scss'>
   .shop {
-    // width:calc(100% - 200px);
     width: 1372px;
-    // height: 600px;
     background: #dddddd;
     margin: 10px auto;
     padding: 10px 10px;
@@ -54,7 +68,6 @@ export default {
       background: rgb(245, 248, 250);
       display: flex;
       align-items: center;
-      // margin-top: 10px;
       .img {
         width: 60px;
         height: 60px;
@@ -69,10 +82,8 @@ export default {
       .email {
         margin-left: 20px;
         width: 200px;
-        // border: 1px solid black;
       }
       .credit {
-        // border: 1px solid black;
         margin-left: 20px;
         display: flex;
         align-items: center;
@@ -82,7 +93,6 @@ export default {
       width: 1000px;
       height: 500px;
       margin: 0 auto;
-      // background: red;
       .col {
         display: flex;
         .col-name {

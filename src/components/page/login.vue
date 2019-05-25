@@ -54,7 +54,6 @@ export default {
             this.$store.commit('setIsLogin', true)
             Bus.$emit('initData')
             Bus.$emit('getEmail')
-            console.log(res.data)
           } else {
             window.msgServices.error('登录失败请重试！')
           }

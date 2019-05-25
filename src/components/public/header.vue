@@ -5,6 +5,8 @@
     .register(v-if='!isLogin', @click='register') 注册
     .myOrder(v-if='isLogin && identity === "user"', @click='toMyOrder') 购物车
     .business(v-if='isLogin && identity === "seller"', @click='toBusiness') 商家中心
+    .business(v-if='isLogin && identity !== "seller"', @click='toUser') 用户中心
+    .community(@click='toCommunity') 社区
     span.exit.s-fc-link(v-if='isLogin', @click='exit') 退出登录
     span.email(v-if='isLogin') {{email}}
 </template>
@@ -51,6 +53,19 @@ export default {
     },
     toBusiness() {
       this.$router.push({path: '/business'})
+    },
+    toUser() {
+      this.$router.push({path: '/user'})
+    },
+    toCommunity() {
+      this.$router.push({path: '/community'})
+    }
+  },
+  watch: {
+    email(newV, oldV) {
+      if (newV !== oldV) {
+        this.$forceUpdate()
+      }
     }
   }
 }
@@ -80,7 +95,7 @@ export default {
       cursor: pointer;
     //   display: inline-block;
     }
-    .login, .register, .myOrder, .business {
+    .login, .register, .myOrder, .business, .community {
       float: right;
       color: #fff;
       margin-right: 20px;

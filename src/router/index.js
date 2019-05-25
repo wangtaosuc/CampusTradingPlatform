@@ -17,6 +17,7 @@ const myCollection = resolve => require(['@/components/page/user/myCollection.vu
 const buyGoods = resolve => require(['@/components/page/user/buyGoods.vue'], resolve)
 const myOrders = resolve => require(['@/components/page/user/myOrders.vue'], resolve)
 const baseInfo = resolve => require(['@/components/page/user/baseInfo.vue'], resolve)
+const community = resolve => require(['@/components/page/community.vue'], resolve)
 
 // user
 
@@ -46,6 +47,14 @@ var router = new Router({
       component: Register,
       meta: {
         title: '注册'
+      }
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: community,
+      meta: {
+        title: '社区'
       }
     },
     {

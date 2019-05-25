@@ -17,7 +17,7 @@ export default {
       orderList:[{
         id: 534,
         orderNO: 9527,
-        productName: '肾宝片',
+        productName: '运动鞋',
         price: 299,
         ordMember: 18392885099,
         ordTime: '2019年4月15日21:47:45',
@@ -25,55 +25,55 @@ export default {
         contacts: '张三',
         contactNumber: 18392885099
       },{
-        id: 534,
-        orderNO: 9527,
-        productName: '肾宝片',
-        price: 299,
-        ordMember: 18392885099,
-        ordTime: '2019年4月15日21:47:45',
+        id: 51734,
+        orderNO: 9864,
+        productName: '大白兔',
+        price: 129,
+        ordMember: 18392885089,
+        ordTime: '2019年4月15日11:47:45',
         ordStatus: '已支付',
-        contacts: '张三',
-        contactNumber: 18392885099
+        contacts: '李四',
+        contactNumber: 18392885089
       },{
-        id: 534,
-        orderNO: 9527,
-        productName: '肾宝片',
+        id: 5134,
+        orderNO: 9319,
+        productName: '书包',
         price: 299,
-        ordMember: 18392885099,
+        ordMember: 18392885079,
         ordTime: '2019年4月15日21:47:45',
         ordStatus: '已支付',
-        contacts: '张三',
-        contactNumber: 18392885099
+        contacts: '王麻子',
+        contactNumber: 18392885079
       },{
-        id: 534,
-        orderNO: 9527,
-        productName: '肾宝片',
-        price: 299,
-        ordMember: 18392885099,
+        id: 5334,
+        orderNO: 9944,
+        productName: '书架',
+        price: 1299,
+        ordMember: 18392885199,
         ordTime: '2019年4月15日21:47:45',
         ordStatus: '已支付',
-        contacts: '张三',
-        contactNumber: 18392885099
+        contacts: '狗剩',
+        contactNumber: 18392885199
       },{
-        id: 534,
-        orderNO: 9527,
-        productName: '肾宝片',
-        price: 299,
-        ordMember: 18392885099,
-        ordTime: '2019年4月15日21:47:45',
+        id: 57734,
+        orderNO: 6787,
+        productName: '台灯',
+        price: 99,
+        ordMember: 18392885000,
+        ordTime: '2019年4月15日21:07:45',
         ordStatus: '已支付',
-        contacts: '张三',
-        contactNumber: 18392885099
+        contacts: '张三丰',
+        contactNumber: 18392885000
       },{
-        id: 534,
-        orderNO: 9527,
-        productName: '肾宝片',
-        price: 299,
-        ordMember: 18392885099,
-        ordTime: '2019年4月15日21:47:45',
+        id: 1534,
+        orderNO: 8827,
+        productName: 'iPhoneX',
+        price: 7999,
+        ordMember: 18392886099,
+        ordTime: '2019年4月25日21:47:45',
         ordStatus: '已支付',
-        contacts: '张三',
-        contactNumber: 18392885099
+        contacts: '刘飞翔',
+        contactNumber: 18392886099
       }]
     }
   }
@@ -84,7 +84,6 @@ export default {
   .order {
     width:1372px;
     height: 600px;
-    background-color: #dddddd;
     margin: 10px auto;
   }
 </style>

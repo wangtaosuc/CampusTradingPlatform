@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import echarts from 'echarts'
 import axios from 'axios'
 import initGlobals from './http/global-main'
+import BaiduMap from 'vue-baidu-map'
 
 import '@/assets/font/iconfont.css'
 import '@/assets/style/main.scss'
@@ -17,6 +18,9 @@ Vue.config.productionTip = false
 
 initGlobals()
 Vue.use(ElementUI)
+Vue.use(BaiduMap, {
+  ak: 'x8M67vDzpMzWyFGyra12bME5Z2vexcaV'
+})
 Vue.prototype.$axios = axios
 
 Vue.prototype.$echarts = echarts

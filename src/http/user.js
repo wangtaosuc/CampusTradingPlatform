@@ -17,4 +17,8 @@ export const getShopCar = (params) => { return axios.get('/shopCar', params)}
 export const delShopCar = (params) => { return axios.delete(`/shopCar/${params}`, params)}
 export const delAll = (params) => { return axios.delete(`/shopCar`, params)}
 
+// community
+export const addCommunity = (params) => { return axios.post('/community', params)}
+export const getCommunity = (params) => { return axios.get('/community/info', params)}
+
 
