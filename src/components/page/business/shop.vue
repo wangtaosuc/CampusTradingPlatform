@@ -43,7 +43,7 @@ export default {
   .shop {
     width:calc(100% - 200px);
     // height: 600px;
-    background: #dddddd;
+    // background: #dddddd;
     margin: 10px auto;
     padding: 10px 10px;
     .baseInfo {

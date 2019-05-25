@@ -67,6 +67,7 @@ var router = new Router({
     {
       path: '/business/',
       name: 'business',
+      redirect: '/business/shop',
       component: Business,
       meta: {
       title: '商家中心'

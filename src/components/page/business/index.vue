@@ -4,9 +4,10 @@
       .title 商家中心
       .menu-list
         router-link.menu-item(v-for='(ele, index) in menuList', :to="{name: ele.icon}", :key='index')
-          span.icon ❤
+          //- span.icon
+            span.iconfont(:class='{"icon-dianpu": ele.icon == "shop", "icon-shangpin": ele.icon == "goods", "icon-dingdan": ele.icon == "order", "icon-shouhou": ele.icon == "service"}')
           span.name {{ele.name}}
-          span.right &gt;
+          //- span.right &gt;
     .right-content
       router-view
 </template>
@@ -28,15 +29,14 @@ export default {
     background-color: #ffffff;
     display: flex;
     .left-list {
-      width: 180px;
+      width: 220px;
       height: 100%;
-      // border-right: 1px solid black;
       display: flex;
       flex-direction: column;
       .title {
         width: 100%;
         height: 60px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid rgb(237, 237, 237);
         text-align: center;
         line-height: 60px;
         font-size: 30px;
@@ -49,12 +49,11 @@ export default {
           width: 100%;
           height: 40px;
           display: flex;
-          border-bottom: 1px solid #ddd;
-          box-shadow: 2px 2px 2px #ddd;
           color: #000;
           span {
             display: inline-block;
             height: 100%;
+            width: 100%;
             line-height: 40px;
             font-size: 16px;
             text-align: center;
@@ -62,10 +61,17 @@ export default {
           }
           .icon {
             width: 25px;
+            span {
+              width: 16px;
+              height: 16px;
+            }
           }
           .name {
             flex: 1;
-            text-align: left;
+            text-align: center;
+            &:hover {
+              color: rgb(243, 69, 53);
+            }
           }
           .right {
             width: 25px;
@@ -73,7 +79,7 @@ export default {
           }
         }
         .menu-item.router-link-exact-active.router-link-active {
-          background: blue;
+          background: rgb(64, 158, 255);
           color: #ffffff;
         }
       }
@@ -81,6 +87,7 @@ export default {
     .right-content {
       width: calc(100% - 180px);
       // background-color: red;
+      background: rgb(240, 243, 239);
     }
   }
 </style>
