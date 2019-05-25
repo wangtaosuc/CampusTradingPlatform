@@ -37,7 +37,7 @@ router.post("/login",(req,res) => {
       //定义token规则
       const rule = {id: user.id, name: user.name, identity: user.identity}
       //第一个参数:规则；第二个参数：加密名字；第三个参数：有效期；第四个：回调函数
-      jwt.sign(rule,keys.secretName,{expiresIn:3600},(err,token) =>{
+      jwt.sign(rule,keys.secretName,{expiresIn:3600000},(err,token) =>{
         if(err) throw err
         res.json({
           status:"ok",
@@ -56,6 +56,27 @@ router.get("/",(req,res) => {
   User.find()
     .then(users => {
       res.json(users)
+    })
+})
+
+// 重置账号密码
+router.get('/resetPW/:id', (req, res) => {
+  console.info(req.params.id)
+  User.findByIdAndUpdate({_id: req.params.id}, { $set: {"password": 999}}, false, false)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json('用户名不存在!')
+      } else {
+        res.json({
+          status: 200,
+          data: {
+            msg: '重置成功'
+          }
+        })
+      }
+    })
+    .catch(err => {
+      return res.status(404).json(err)
     })
 })
 module.exports = router;

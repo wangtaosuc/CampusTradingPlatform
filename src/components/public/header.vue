@@ -1,12 +1,13 @@
 <template lang="pug">
   .m-header.f-fc-666.f-fs-18.f-toe
     .title.iconfont.iconshangcheng1(@click='returnHome') 校园交易平台
-    .login(v-if='!isLogin', @click='login') 登录
-    .register(v-if='!isLogin', @click='register') 注册
-    .myOrder(v-if='isLogin && identity === "user"', @click='toMyOrder') 购物车
-    .business(v-if='isLogin && identity === "seller"', @click='toBusiness') 商家中心
-    .business(v-if='isLogin && identity !== "seller"', @click='toUser') 用户中心
-    .community(@click='toCommunity') 社区
+    span.btn-login(v-if='!isLogin', @click='login') 登录
+    span.btn-register(v-if='!isLogin', @click='register') 注册
+    span.btn-myOrder(v-if='isLogin && identity === "user"', @click='toMyOrder') 购物车
+    spanb.btn-business(v-if='isLogin && identity === "seller"', @click='toBusiness') 商家中心
+    span.btn-user(v-if='isLogin && identity !== "seller"', @click='toUser') 用户中心
+    span.btn-manager(@click='toManager') 管理中心
+    span.btn-community(v-if='isLogin', @click='toCommunity') 社区
     span.exit.s-fc-link(v-if='isLogin', @click='exit') 退出登录
     span.email(v-if='isLogin') {{email}}
 </template>
@@ -24,6 +25,9 @@ export default {
     Bus.$on('initData', () => {
       this.initData()
     })
+    if (this.isLogin === "" || this.isLogin === false) {
+      this.$router.push({path: '/home'})
+    }
   },
   methods: {
     initData () {
@@ -59,12 +63,21 @@ export default {
     },
     toCommunity() {
       this.$router.push({path: '/community'})
+    },
+    toManager() {
+      this.$router.push({path: '/manager'})
     }
   },
   watch: {
     email(newV, oldV) {
       if (newV !== oldV) {
         this.$forceUpdate()
+      }
+    },
+    isLogin(newV, oldV) {
+      if (newV === false) {
+        this.$router.push({path: '/home'})
+        console.log(newV, oldV)
       }
     }
   }
@@ -95,12 +108,14 @@ export default {
       cursor: pointer;
     //   display: inline-block;
     }
-    .login, .register, .myOrder, .business, .community {
+    .btn-login, .btn-register, .btn-myOrder, .btn-business, .btn-community, .btn-user, .btn-manager {
       float: right;
       color: #fff;
       margin-right: 20px;
       cursor: pointer;
       font-size: 16px;
+      // height: 64px;
+      // line-height: 64px;
     }
   }
 </style>

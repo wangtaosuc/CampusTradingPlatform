@@ -9,6 +9,7 @@ import GoodsDetail from '@/components/page/goodsDetail.vue'
 import MyOrder from '@/components/page/myOrder.vue'
 import Business from '@/components/page/business/index.vue'
 import User from '@/components/page/user/index.vue'
+import Manager from '@/components/page/manager/index.vue'
 const shop = resolve => require(['@/components/page/business/shop.vue'], resolve);
 const goods = resolve => require(['@/components/page/business/goods.vue'], resolve);
 const order = resolve => require(['@/components/page/business/order.vue'], resolve);
@@ -129,7 +130,15 @@ var router = new Router({
         name: 'myCollection',
         component: myCollection
       }]
-  }
+    },
+    {
+      path: '/manager',
+      name: 'manager',
+      component: Manager,
+      meta: {
+        title: '管理中心'
+      }
+    }
   ]
 })
 

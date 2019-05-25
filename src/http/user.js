@@ -21,4 +21,7 @@ export const delAll = (params) => { return axios.delete(`/shopCar`, params)}
 export const addCommunity = (params) => { return axios.post('/community', params)}
 export const getCommunity = (params) => { return axios.get('/community/info', params)}
 
+//manager
+export const getAllUser = (params) => {return axios.get('/users', params)}
+export const resetPW = (params) => { return axios.get(`/users/resetPW/${params}`)}
 
