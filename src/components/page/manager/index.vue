@@ -29,11 +29,11 @@
             el-button(type='warning', size='small', @click='resetPassWord(user)') 重置
         el-col(:span='4')
           .content
-            el-button(type='danger', size='small') 删除
+            el-button(type='danger', size='small', @click="removeUser(user)") 删除
 </template>
 
 <script>
-import {getAllUser, resetPW} from '@/http/user.js'
+import {getAllUser, resetPW, deleteUser} from '@/http/user.js'
 export default {
   data() {
     return {
@@ -52,6 +52,16 @@ export default {
           window.msgServices.success('重置密码成功！')
         } else {
           window.msgServices.error('重置密码失败，请重试！')
+        }
+      })
+    },
+    removeUser(user) {
+      deleteUser(user._id).then(res => {
+        if (res.status === 200) {
+          this.getUser()
+          window.msgServices.success('已成功删除！')
+        } else {
+          window.msgServices.error('删除操作失败,请重试！')
         }
       })
     }
@@ -96,6 +106,13 @@ export default {
       height: 40px;
       display: flex;
       align-items: center;
+      &:hover {
+        background: #eeeeee;
+        .content {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
       .content {
         width: 100%;
         height: 100%;

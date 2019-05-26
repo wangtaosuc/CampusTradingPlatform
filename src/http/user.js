@@ -24,4 +24,4 @@ export const getCommunity = (params) => { return axios.get('/community/info', pa
 //manager
 export const getAllUser = (params) => {return axios.get('/users', params)}
 export const resetPW = (params) => { return axios.get(`/users/resetPW/${params}`)}
-
+export const deleteUser = (params) => {return axios.delete(`/users/delete/${params}`)}

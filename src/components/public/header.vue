@@ -5,9 +5,9 @@
     span.btn-register(v-if='!isLogin', @click='register') 注册
     span.btn-myOrder(v-if='isLogin && identity === "user"', @click='toMyOrder') 购物车
     spanb.btn-business(v-if='isLogin && identity === "seller"', @click='toBusiness') 商家中心
-    span.btn-user(v-if='isLogin && identity !== "seller"', @click='toUser') 用户中心
-    span.btn-manager(@click='toManager') 管理中心
-    span.btn-community(v-if='isLogin', @click='toCommunity') 社区
+    span.btn-user(v-if='isLogin && identity !== "seller" && identity !== "admin"', @click='toUser') 用户中心
+    span.btn-manager(v-if='isLogin && identity === "admin"' @click='toManager') 管理中心
+    span.btn-community(v-if='isLogin && identity !== "admin"', @click='toCommunity') 社区
     span.exit.s-fc-link(v-if='isLogin', @click='exit') 退出登录
     span.email(v-if='isLogin') {{email}}
 </template>

@@ -61,7 +61,6 @@ router.get("/",(req,res) => {
 
 // 重置账号密码
 router.get('/resetPW/:id', (req, res) => {
-  console.info(req.params.id)
   User.findByIdAndUpdate({_id: req.params.id}, { $set: {"password": 999}}, false, false)
     .then((user) => {
       if (!user) {
@@ -79,4 +78,20 @@ router.get('/resetPW/:id', (req, res) => {
       return res.status(404).json(err)
     })
 })
+
+// 删除某个账号
+router.delete('/delete/:id', (req, res) => {
+  let id = req.params.id
+  console.log(id)
+  User.findByIdAndRemove({_id: id})
+  .then(user => {
+    user.save().then(user => {
+      res.json(user)
+    })
+  })
+  .catch(err => {
+    return res.status(404).json(err)
+  })
+})
+
 module.exports = router;
