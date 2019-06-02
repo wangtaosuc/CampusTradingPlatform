@@ -11,7 +11,7 @@
           span(:class='{"error": passwordIsBlank}') 密码不能为空
         .input-text
           .check-remember
-            input(type='checkbox', id='remember')
+            input(type='checkbox', id='remember', @change='changeRemember($event)', :checked='isRemember')
             label(for='remember') 记住我
           .forget-password
             a(href='#忘记密码') 忘记密码？
@@ -37,7 +37,8 @@ export default {
         password: ''
       },
       nameIsBlank: false,
-      passwordIsBlank: false
+      passwordIsBlank: false,
+      isRemember: null
     }
   },
   methods: {
@@ -46,6 +47,7 @@ export default {
       if (this.userInfo.password === '') this.passwordIsBlank = true
       if (!this.nameIsBlank && !this.passwordIsBlank) {
         login(this.userInfo).then((res) => {
+          console.log(res)
           if (res.data.status === 'ok') {
             this.$router.push('/home')
             window.msgServices.success('登录成功！')
@@ -66,6 +68,30 @@ export default {
       } else {
         this[isBlank] = false
       }
+    },
+    changeRemember (event){
+      // console.log(event.target.checked)
+      this.setIsRemember(event.target.checked)
+    },
+    getIsRemember () {
+      this.isRemember = localStorage.getItem('isRemember')
+      // console.log(this.isRemember)
+    },
+    setIsRemember (isRemeber) {
+      // console.log(isRemeber)
+      localStorage.setItem('isRemember', isRemeber)
+    }
+  },
+  mounted () {
+    this.getIsRemember()
+  },
+  watch: {
+    router (to, from) {
+      console.log(to, from)
+      // 对路由变化作出响应...
+    },
+    isRemember (to, from) {
+      console.log(to, from)
     }
   }
 }

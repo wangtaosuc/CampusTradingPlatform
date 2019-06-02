@@ -23,7 +23,7 @@
         .total ￥
           span {{collect.price * collect.num}}
         .operation
-          .btn.btn-buy
+          .btn.btn-buy(@click='addToCar(collect)')
             i.el-icon-circle-plus
             span [加入购物车]
           .btn.btn-delete
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import Bus from '@/lib/bus.js'
+import { addShopCar } from '@/http/user.js'
 export default {
   data() {
     return {
@@ -72,6 +74,23 @@ export default {
   methods: {
     handleChange(value, $event) {
       console.log(value, $event)
+    },
+    addToCar (collect) {
+      if (this.$store.state.email) {
+        let params = {
+          name: collect.name,
+          num: 1,
+          store: "保罗的小店",
+          price: collect.price
+        }
+        addShopCar(params).then(res => {
+          console.log(res)
+        })
+        Bus.$emit('getShopCar')
+      } else {
+         this.$router.push('/login')
+        window.msgServices.info('请先登录！')
+      }
     }
   }
 }

@@ -10,7 +10,6 @@
               span.seller(style='float:right;color:#888;font-size:14px;margin-right:10px;') {{ item.goodsNum }}人付款
             .goods-row-2.f-m-t-10.f-m-l-10
               span.goodsName(style='font-size:14px;font-weight:700;') {{ item.goodsName }}
-              //- span.iconfont.iconcar(style='float:right;margin-right:10px;color:#f40;')
             .goods-row-3.f-m-10
               .storeName(style='color:#888;font-size:14px;') {{ item.storeName }}
               .storeLocation(style='margin-top:10px;color:#888;font-size:14px;') {{ item.storeLocation }}
